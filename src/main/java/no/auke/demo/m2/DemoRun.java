@@ -11,7 +11,9 @@ public class DemoRun {
 		String dir = InitParam.USERDIR;
 		
 		String userid = "TestUser";
-		String trial = "";
+		String useridRemote = "";
+		
+		String trial = "sendreplylocal";
 		
         int pos = 0;
         while (pos < args.length) {
@@ -29,6 +31,10 @@ public class DemoRun {
             	if (args[pos].equals("-u") && args.length > pos) {
             		userid = args[pos + 1];
                 }
+            	
+            	if (args[pos].equals("-ur") && args.length > pos) {
+            		useridRemote = args[pos + 1];
+                }            	
                 
             	if (args[pos].equals("-dir") && args.length > pos) {
             		dir = args[pos + 1];
@@ -42,6 +48,16 @@ public class DemoRun {
         	
         	SimpleSetup s = new SimpleSetup();
         	s.run(namespace, dir, userid);
+        	
+        } else if(trial.equals("sendreplylocal")){
+        	
+        	SendReplyLocal s = new SendReplyLocal();
+        	s.run(namespace, dir, userid);
+
+        } else if(trial.equals("sendreply")){
+        	
+        	SendReply s = new SendReply();
+        	s.run(namespace, dir, userid, useridRemote);
         	
         }
 		

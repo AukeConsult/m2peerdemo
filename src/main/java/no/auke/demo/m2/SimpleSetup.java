@@ -19,8 +19,7 @@ public class SimpleSetup {
 				
 				System.out.println(new String(buffer));
 				
-			}
-			
+			}			
 
 		}); 
 	    
@@ -61,6 +60,5 @@ public class SimpleSetup {
         peerB.stopServer();
         
 	}
-
 
 }
