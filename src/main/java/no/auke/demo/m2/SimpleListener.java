@@ -7,91 +7,108 @@ import no.auke.p2p.m2.general.LicenseReasons;
 public class SimpleListener extends IListener
 {
 
+	
+	public SimpleListener(int Loglevel){
+		super(Loglevel);
+	}
+	
 	@Override
-	public void printLog(String s) {
-		
+	public void printLog(String message) {
+		System.out.println(message);
 		
 	}
 
 	@Override
-	public void onServiceStarted(String s) {
-		
-		
-	}
-
-	@Override
-	public void onServiceStopped(String s) {
-		
+	public void onServiceStarted(String message) {
+		message(message);
 		
 	}
 
 	@Override
-	public void onServiceConnected(NetAddress netaddress, NetAddress netaddress1) {
-		// TODO Auto-generated method stub
-		
-		
+	public void onServiceStopped(String message) {
+		message(message);
 		
 	}
 
 	@Override
-	public void onServiceDisconnected(NetAddress netaddress) {
-		// TODO Auto-generated method stub
+	public void onServiceConnected(NetAddress publicAddress,
+			NetAddress kaServerAddress) {
+		
+		debug("service is connected " + publicAddress.getAddressPort());
 		
 	}
 
 	@Override
-	public void connectionRejected(NetAddress netaddress, String s) {
-		// TODO Auto-generated method stub
+	public void onServiceDisconnected(NetAddress kaServerAddress) {
+		debug("service is disconnected");
+	}
+
+	@Override
+	public void connectionRejected(NetAddress kaServerAddress, String msg) {
+		message("connection rejected " + kaServerAddress.getAddressPort() +  " " + msg);
 		
 	}
 
 	@Override
-	public void onPeerConnected(NetAddress netaddress) {
-		// TODO Auto-generated method stub
+	public void onPeerConnected(NetAddress peerAddress) {
+		debug("peer is connected " + peerAddress.getAddressPort());
 		
 	}
 
 	@Override
-	public void onPeerDisconnected(NetAddress netaddress) {
-		// TODO Auto-generated method stub
+	public void onPeerDisconnected(NetAddress peerAddress) {
+		debug("peer is disconnected " + peerAddress.getAddressPort());
 		
 	}
 
 	@Override
-	public void onMessageSend(NetAddress netaddress, int i, int j, int k) {
-		// TODO Auto-generated method stub
+	public void onMessageSend(NetAddress peerAddress, int socketPort,
+			int messageId, int size) {
+		
+		trace("message sent" + peerAddress.getAddressPort() + " port " + String.valueOf(socketPort) + " size " + String.valueOf(size) + " messageid " + String.valueOf(messageId));
 		
 	}
 
 	@Override
-	public void onMessageRecieved(NetAddress netaddress, int i, int j, int k) {
-		// TODO Auto-generated method stub
+	public void onMessageRecieved(NetAddress peerAddress, int socketPort,
+			int messageId, int size) {
+		
+		trace("message recieved" + peerAddress.getAddressPort() + " port " + String.valueOf(socketPort) + " size " + String.valueOf(size) + " messageid " + String.valueOf(messageId));
 		
 	}
 
 	@Override
-	public void onMessageDisplay(String s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onMessageConfirmed(NetAddress netaddress, int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onTraffic(float f, float f1, long l, long l1) {
+	public void onMessageDisplay(String message) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onLicenseError(LicenseReasons licensereasons, String s) {
+	public void onMessageConfirmed(NetAddress peerAddress, int messageId) {
+
+		trace("message confirmed " + peerAddress.getAddressPort() + " messageid " + String.valueOf(messageId));
+		
+	}
+
+	@Override
+	public void onTraffic(float bytes_in_sec, float bytes_out_sec,
+			long bytes_total_in, long bytes_total_out) {
+
+		debug("traffic " + 
+						   " byte in pr second " + String.valueOf(bytes_in_sec) + 
+						   " byte out pr second " + String.valueOf(bytes_out_sec) + 
+						   " byte in total " + String.valueOf(bytes_total_in) + 
+						   " byte out total " + String.valueOf(bytes_total_out));
+		
+	}
+
+	@Override
+	public void onLicenseError(LicenseReasons reason, String licenseKey) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 	
 	
