@@ -48,12 +48,23 @@ public class SimpleMessage {
 	
 	public SimpleMessage(byte[] data) {
 		
-     	List<byte[]> subs = ByteUtil.splitDynamicBytes(data);
-     	
-     	userid = StringConv.UTF8(subs.get(0));
-     	num = ByteUtil.getLong(subs.get(1));
-     	timesent = ByteUtil.getLong(subs.get(2));
-     	message = subs.get(3);
+		if(data!=null){
+			
+	     	List<byte[]> subs = ByteUtil.splitDynamicBytes(data);
+	     	if(subs.size()>3){
+	  
+	     		userid = StringConv.UTF8(subs.get(0));
+	         	num = ByteUtil.getLong(subs.get(1));
+	         	timesent = ByteUtil.getLong(subs.get(2));
+	         	message = subs.get(3);
+	     		
+	     		
+	     	}
+	     			
+
+			
+		}
+     			
         
 	}	
 	

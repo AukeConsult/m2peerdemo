@@ -8,7 +8,7 @@ import no.auke.p2p.m2.sockets.ISocketPortListen;
 
 public class SendReply {
 	
-	public void run(String namespace, String dir, String userid, String useridRemote) {
+	public void run(String namespace, String dir, String userid, String useridRemote, boolean send) {
 		
 		//initialize a peerA
 		
@@ -35,28 +35,35 @@ public class SendReply {
 
 		}); 
 		
-		Random rnd = new Random();
-		int cnt=0;
-		while(true){
+		if(send) {
 			
-			// fill som random data
-			byte[] message = new byte[rnd.nextInt(100000)];
-			rnd.nextBytes(message);
-			
-			if(socket.send(useridRemote, 2000, new SimpleMessage(userid,cnt,message).getBytes())){
+			Random rnd = new Random();
+			int cnt=0;
+			while(true){
 				
-				cnt++;
+				// fill som random data
+				byte[] message = new byte[rnd.nextInt(100000)];
+				rnd.nextBytes(message);
 				
-			} else {
 				
-				System.out.println("can not send to " + useridRemote + " error " + socket.getLastMessage());
+				if(socket.send(useridRemote, 2000, new SimpleMessage(userid,cnt,message).getBytes())){
+
+					cnt++;
+					System.out.println("sent to " + useridRemote + " size : " + String.valueOf(message.length));
+					
+				} else {
+					
+					System.out.println("can not send to " + useridRemote + " error " + socket.getLastMessage());
+					
+				}
+				
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+				}
 				
 			}
 			
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-			}
 			
 		}
 	    

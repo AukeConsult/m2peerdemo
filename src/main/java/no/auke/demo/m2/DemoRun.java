@@ -57,7 +57,7 @@ public class DemoRun {
         } else if(trial.equals("sendreply")){
         	
         	SendReply s = new SendReply();
-        	s.run(namespace, dir, userid, useridRemote);
+        	s.run(namespace, dir, userid, useridRemote, true);
         	
         }
 		

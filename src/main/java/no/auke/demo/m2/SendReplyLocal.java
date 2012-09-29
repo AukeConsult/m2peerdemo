@@ -16,7 +16,7 @@ public class SendReplyLocal {
 			public void run() {
 				
 				 SendReply sender = new SendReply();
-				 sender.run(namespace, dir, userid+"A", userid+"B");
+				 sender.run(namespace, dir, userid+"A", userid+"B", true);
 				
 			}});
 
@@ -26,7 +26,7 @@ public class SendReplyLocal {
 			public void run() {
 				
 				 SendReply sender = new SendReply();
-				 sender.run(namespace, dir, userid+"B", userid+"A");
+				 sender.run(namespace, dir, userid+"B", userid+"A",true);
 				
 			}});
 		
