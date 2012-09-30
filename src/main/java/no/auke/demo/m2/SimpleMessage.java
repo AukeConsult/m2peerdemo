@@ -7,10 +7,10 @@ import no.auke.util.StringConv;
 
 public class SimpleMessage {
 	
-	String userid;
-	long num;
-	long timesent;
-	byte[] message;
+	String userid = "";
+	long num = 0;
+	long timesent = 0;
+	byte[] message=new byte[0];
 	
 	public String getUserid() {
 		return userid;
@@ -48,23 +48,28 @@ public class SimpleMessage {
 	
 	public SimpleMessage(byte[] data) {
 		
-		if(data!=null){
+		try {
 			
-	     	List<byte[]> subs = ByteUtil.splitDynamicBytes(data);
-	     	if(subs.size()>3){
-	  
-	     		userid = StringConv.UTF8(subs.get(0));
-	         	num = ByteUtil.getLong(subs.get(1));
-	         	timesent = ByteUtil.getLong(subs.get(2));
-	         	message = subs.get(3);
-	     		
-	     		
-	     	}
-	     			
-
+			if(data!=null && data.length>0){
+				
+		     	List<byte[]> subs = ByteUtil.splitDynamicBytes(data);
+		     	if(subs.size()>3){
+		  
+		     		userid = StringConv.UTF8(subs.get(0));
+		         	num = ByteUtil.getLong(subs.get(1));
+		         	timesent = ByteUtil.getLong(subs.get(2));
+		         	message = subs.get(3)==null?new byte[0]:subs.get(3);
+		     		
+		     		
+		     	}
+				
+			}
 			
-		}
-     			
+		} catch (Exception ex) {
+			
+			// some error in data sent
+		
+		}      			
         
 	}	
 	
@@ -72,10 +77,10 @@ public class SimpleMessage {
     {
         return  ByteUtil.mergeDynamicBytesWithLength
                 (
-                    StringConv.getBytes(userid),
+                	userid.isEmpty()?new byte[0]:StringConv.getBytes(userid),
                     ByteUtil.getBytes(num, 8),
                     ByteUtil.getBytes(timesent, 8),
-                    message
+                    message==null?new byte[0]:message
                 );
     }	
 	

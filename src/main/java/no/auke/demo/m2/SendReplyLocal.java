@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 public class SendReplyLocal {
 
+	Object waitfor=new Object();
 	public void run(final String namespace, final String dir, final String userid) {
 		
 		
@@ -17,8 +18,17 @@ public class SendReplyLocal {
 				
 				 SendReply sender = new SendReply();
 				 sender.run(namespace, dir, userid+"A", userid+"B", true);
+				 
+
 				
 			}});
+		
+		
+		// wait a little while before start next
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 
 		executor.execute(new Runnable(){
 
@@ -30,10 +40,13 @@ public class SendReplyLocal {
 				
 			}});
 		
-		
-		try {
-			this.wait();
-		} catch (InterruptedException e) {
+		synchronized(waitfor){
+
+			try {
+				waitfor.wait();
+			} catch (InterruptedException e) {
+			}
+			
 		}
 		
 		executor.shutdownNow();
