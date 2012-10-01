@@ -49,7 +49,7 @@ public class SendReply {
 			while(true){
 				
 				// fill som random data
-				byte[] message = new byte[rnd.nextInt(1000000)];
+				byte[] message = new byte[rnd.nextInt(10000)];
 				rnd.nextBytes(message);
 				
 				

@@ -44,6 +44,8 @@ public class DemoRun {
             pos++;
         }
         
+    	System.out.println("starting " + trial);
+        
         if(trial.isEmpty()){
         	
         	SimpleSetup s = new SimpleSetup();
@@ -53,11 +55,22 @@ public class DemoRun {
         	
         	SendReplyLocal s = new SendReplyLocal();
         	s.run(namespace, dir, userid);
+        	
+        } else if(trial.equals("sendreply3services")){
+        	
+        	SendReply3Services s = new SendReply3Services();
+        	s.run(namespace, dir, userid, useridRemote, true);       	
 
         } else if(trial.equals("sendreply")){
         	
+
+        	
         	SendReply s = new SendReply();
         	s.run(namespace, dir, userid, useridRemote, true);
+        	
+        } else {
+        	
+        	System.out.println("wrong startup " + trial);
         	
         }
 		
