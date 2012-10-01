@@ -12,6 +12,7 @@ public class DemoRun {
 		
 		String userid = "TestUser";
 		String useridRemote = "";
+		int port = InitParam.PORT;
 		
 		String trial = "sendreplylocal";
 		
@@ -23,6 +24,10 @@ public class DemoRun {
             	if (args[pos].equals("-t") && args.length > pos) {
             		trial = args[pos + 1];
                 }
+            	
+            	if (args[pos].equals("-port") && args.length > pos) {
+            		port = Integer.parseInt(args[pos + 1]);
+                }            	
         		
             	if (args[pos].equals("-ns") && args.length > pos) {
             		namespace = args[pos + 1];
@@ -54,19 +59,17 @@ public class DemoRun {
         } else if(trial.equals("sendreplylocal")){
         	
         	SendReplyLocal s = new SendReplyLocal();
-        	s.run(namespace, dir, userid);
+        	s.run(namespace, dir, port, userid);
         	
         } else if(trial.equals("sendreply3services")){
         	
         	SendReply3Services s = new SendReply3Services();
-        	s.run(namespace, dir, userid, useridRemote, true);       	
+        	s.run(namespace, dir, userid, useridRemote, port, true);       	
 
         } else if(trial.equals("sendreply")){
         	
-
-        	
         	SendReply s = new SendReply();
-        	s.run(namespace, dir, userid, useridRemote, true);
+        	s.run(namespace, dir, userid, useridRemote, port, true);
         	
         } else {
         	

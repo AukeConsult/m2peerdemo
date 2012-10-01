@@ -13,17 +13,15 @@ public class SendReply {
 	
     private static final Logger logger = LoggerFactory.getLogger(Socket.class);
 	
-	public void run(String namespace, String dir, String userid, String useridRemote, boolean send) {
+	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send) {
 		
 		//initialize a peerA
 		
 		logger.info("start for " + userid);
 		
 		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, "", new SimpleListener(InitParam.DEBUGLEVEL));
-	    peer.start(userid);
+	    peer.start("",port,userid);
 
-	    System.out.println("started for " + userid);
-	    
 		final Socket socket = peer.open(2000, new ISocketPortListen(){
 
 			@Override
