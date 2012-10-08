@@ -14,7 +14,12 @@
     <logger name="no.auke.p2p.m2.Socket" level="DEBUG"/>
     <logger name="no.auke.p2p.m2.workers.SocketBuffer" level="DEBUG"/>
     <logger name="no.auke.p2p.m2.workers.SocketBufferIncoming" level="DEBUG"/>
-    <logger name="no.auke.p2p.m2.workers.SocketBufferOutgoing" level="DEBUG"/>    
+    <logger name="no.auke.p2p.m2.workers.SocketBufferOutgoing1" level="DEBUG"/>   
+    <logger name="no.auke.p2p.m2.workers.SocketBufferOutgoing2" level="DEBUG"/>        
+    <logger name="no.auke.p2p.m2.workers.ChunkOutgoing1" level="DEBUG"/>
+    <logger name="no.auke.p2p.m2.workers.ChunkOutgoing2" level="DEBUG"/>
+    <logger name="no.auke.p2p.m2.workers.ChunkIncoming" level="DEBUG"/>
+	<logger name="no.auke.p2p.m2.workers.ComChannel" level="DEBUG"/> 
     
 <!--     <logger name="no.auke.p2p.m2.Sockets.ISyncSocket" level="DEBUG"/> -->
 <!--     <logger name="no.auke.p2p.m2.Sockets.IAsyncSocket" level="DEBUG"/> -->
@@ -24,7 +29,6 @@
 <!--     <logger name="no.auke.p2p.m2.workers.ChunkIncoming" level="DEBUG"/> -->
     
 <!--     <logger name="no.auke.p2p.m2.workers.ChunkOutgoing" level="DEBUG"/> -->
-<!--     <logger name="no.auke.p2p.m2.workers.ComChannel" level="DEBUG"/> -->
 
 <!--     <logger name="no.auke.p2p.m2.workers.KeepAlivePool" level="DEBUG"></logger> -->
 <!--     <logger name="no.auke.p2p.m2.workers.KeepAliveAgent2" level="DEBUG"></logger> -->
