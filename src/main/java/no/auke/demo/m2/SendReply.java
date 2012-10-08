@@ -47,18 +47,18 @@ public class SendReply {
 			while(true){
 				
 				// fill som random data
-				byte[] message = new byte[rnd.nextInt(10000)];
+				byte[] message = new byte[rnd.nextInt(100000)];
 				rnd.nextBytes(message);
 				
 				
 				if(socket.send(useridRemote, 2000, new SimpleMessage(userid,cnt,message).getBytes())){
 
 					cnt++;
-					System.out.println("sent to " + useridRemote + " size : " + String.valueOf(message.length));
+					System.out.println("SUCCESS: sent to " + useridRemote + " size : " + String.valueOf(message.length));
 					
 				} else {
 					
-					System.out.println("can not send to " + useridRemote + " error " + socket.getLastMessage());
+					System.out.println("ERROR: can not send to " + useridRemote + " error " + socket.getLastMessage());
 					
 				}
 				
