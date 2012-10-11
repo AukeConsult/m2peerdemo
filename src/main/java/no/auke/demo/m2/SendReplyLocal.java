@@ -36,7 +36,7 @@ public class SendReplyLocal {
 			public void run() {
 				
 				 SendReply sender = new SendReply();
-				 sender.run(namespace, dir, userid+"B", userid+"A", (port>0?port + 1:0), true);
+				 sender.run(namespace, dir, userid+"B", userid+"A", (port>0?port + 1:0), false);
 				
 			}});
 		

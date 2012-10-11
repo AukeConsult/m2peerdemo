@@ -47,7 +47,7 @@ public class SendReply {
 			while(true){
 				
 				// fill som random data
-				byte[] message = new byte[rnd.nextInt(100000)];
+				byte[] message = new byte[500000 + rnd.nextInt(100000)];
 				rnd.nextBytes(message);
 				
 				
@@ -59,6 +59,7 @@ public class SendReply {
 				} else {
 					
 					System.out.println("ERROR: can not send to " + useridRemote + " error " + socket.getLastMessage());
+					socket.close(useridRemote);
 					
 				}
 				
