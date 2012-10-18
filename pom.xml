@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>no.auke</groupId>
   <artifactId>m2peerdemo</artifactId>
-  <version>1.0T</version>
+  <version>1.0</version>
   <name>m2peerdemo</name>
   
   <description>illustrate the usage of m2peer
@@ -29,16 +29,16 @@
 			<version>3.0.1</version>
 		</dependency> -->
 	
-		   <dependency>
-            <groupId>auke.consult</groupId>
-            <artifactId>m2license</artifactId>
-            <version>2.1-SNAPSHOT</version>
-        </dependency>
-         <dependency>
-            <groupId>auke.consult</groupId>
-            <artifactId>m2core</artifactId>
-            <version>2.1-SNAPSHOT</version>
-        </dependency>
+<!-- 		   <dependency> -->
+<!--             <groupId>auke.consult</groupId> -->
+<!--             <artifactId>m2license</artifactId> -->
+<!--             <version>2.1-SNAPSHOT</version> -->
+<!--         </dependency> -->
+<!--          <dependency> -->
+<!--             <groupId>auke.consult</groupId> -->
+<!--             <artifactId>m2core</artifactId> -->
+<!--             <version>2.1-SNAPSHOT</version> -->
+<!--         </dependency> -->
          <dependency>
             <groupId>auke.consult</groupId>
             <artifactId>m2peerservice</artifactId>

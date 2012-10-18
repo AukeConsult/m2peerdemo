@@ -44,10 +44,18 @@ public class SendReply {
 			 
 			Random rnd = new Random();
 			int cnt=0;
+			int size=0;
 			while(true){
+
+				if(size>1000000){
+					size = 0;
+				}
+				size += 100000;
+
 				
 				// fill som random data
-				byte[] message = new byte[500000 + rnd.nextInt(100000)];
+				byte[] message = new byte[size + rnd.nextInt(size)];
+
 				rnd.nextBytes(message);
 				
 				
@@ -59,7 +67,7 @@ public class SendReply {
 				} else {
 					
 					System.out.println("ERROR: can not send to " + useridRemote + " error " + socket.getLastMessage());
-					socket.close(useridRemote);
+					// socket.close(useridRemote);
 					
 				}
 				
