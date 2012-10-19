@@ -50,7 +50,7 @@ public class MMTest {
 			while(true){
 				
 				// fill som random data
-				byte[] message = new byte[1000];
+				byte[] message = new byte[10000];
 				rnd.nextBytes(message);
 				
 				
@@ -67,7 +67,7 @@ public class MMTest {
 				}
 				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 				}
 				

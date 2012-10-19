@@ -13,7 +13,7 @@ public class SendReply {
 	
     private static final Logger logger = LoggerFactory.getLogger(Socket.class);
 	
-	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send, int trialsize) {
+	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send) {
 		
 		//initialize a peerA
 		
@@ -44,17 +44,10 @@ public class SendReply {
 			 
 			Random rnd = new Random();
 			int cnt=0;
-			int size=0;
 			while(true){
-
-				if(size>trialsize){
-					size = 0;
-				}
-				size += (trialsize / 20) ;
-
+				
 				// fill som random data
-				byte[] message = new byte[size + rnd.nextInt(size)];
-
+				byte[] message = new byte[500000 + rnd.nextInt(100000)];
 				rnd.nextBytes(message);
 				
 				
@@ -66,12 +59,12 @@ public class SendReply {
 				} else {
 					
 					System.out.println("ERROR: can not send to " + useridRemote + " error " + socket.getLastMessage());
-					// socket.close(useridRemote);
+					socket.close(useridRemote);
 					
 				}
 				
 				try {
-					Thread.sleep(10);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 				}
 				
