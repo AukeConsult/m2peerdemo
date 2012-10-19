@@ -13,7 +13,7 @@ public class SendReply {
 	
     private static final Logger logger = LoggerFactory.getLogger(Socket.class);
 	
-	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send) {
+	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send, int trialsize) {
 		
 		//initialize a peerA
 		
@@ -47,12 +47,11 @@ public class SendReply {
 			int size=0;
 			while(true){
 
-				if(size>1000000){
+				if(size>trialsize){
 					size = 0;
 				}
-				size += 100000;
+				size += (trialsize / 20) ;
 
-				
 				// fill som random data
 				byte[] message = new byte[size + rnd.nextInt(size)];
 
@@ -72,7 +71,7 @@ public class SendReply {
 				}
 				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 				}
 				
