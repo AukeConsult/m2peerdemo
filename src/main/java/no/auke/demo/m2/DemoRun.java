@@ -16,7 +16,12 @@ public class DemoRun {
 		int port = InitParam.PORT;
 		
 		String trial = "sendreplylocal";
-		
+		String server = "";
+		if(args.length >=1 && !args[0].startsWith("-"))
+		{
+			 server = args[0];
+		}
+		 
         int pos = 0;
         while (pos < args.length) {
             
@@ -79,11 +84,13 @@ public class DemoRun {
         } else if(trial.equals("mmtest"))
         {
         	MMTest s = new MMTest();
+        	s.address = server;
         	s.run(namespace, dir, userid, useridRemote, port, dosend);
         }
         else if(trial.equals("mmlocaltest"))
         {
         	MMLocalTest s = new MMLocalTest();
+        	s.address = server;
         	s.run(namespace, dir, port, userid);
         }
         else {
