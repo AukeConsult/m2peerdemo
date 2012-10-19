@@ -76,12 +76,21 @@ public class DemoRun {
         	SendReply s = new SendReply();
         	s.run(namespace, dir, userid, useridRemote, port, dosend);
         	
-        } else {
+        } else if(trial.equals("mmtest"))
+        {
+        	MMTest s = new MMTest();
+        	s.run(namespace, dir, userid, useridRemote, port, dosend);
+        }
+        else if(trial.equals("mmlocaltest"))
+        {
+        	MMLocalTest s = new MMLocalTest();
+        	s.run(namespace, dir, port, userid);
+        }
+        else {
         	
         	System.out.println("wrong startup " + trial);
         	
         }
-		
 
 	}
 
