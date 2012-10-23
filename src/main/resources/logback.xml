@@ -17,8 +17,8 @@
     <logger name="no.auke.p2p.m2.workers.SocketBufferOutgoing1" level="DEBUG"/>   
     <logger name="no.auke.p2p.m2.workers.SocketBufferOutgoing2" level="DEBUG"/>        
     <logger name="no.auke.p2p.m2.workers.ChunkOutgoing1" level="INFO"/>
-    <logger name="no.auke.p2p.m2.workers.ChunkOutgoing2" level="INFO"/>
-    <logger name="no.auke.p2p.m2.workers.ChunkIncoming" level="INFO"/> 
+    <logger name="no.auke.p2p.m2.workers.ChunkOutgoing2" level="DEBUG"/>
+    <logger name="no.auke.p2p.m2.workers.ChunkIncoming" level="TRACE"/> 
 	<logger name="no.auke.p2p.m2.timing.SendStatistics" level="DEBUG"/> 
 	<logger name="no.auke.p2p.m2.timing.SpeedCalc2" level="DEBUG"/>
 <!--     <logger name="no.auke.p2p.m2.workers.ComChannel" level="TRACE"/> -->
