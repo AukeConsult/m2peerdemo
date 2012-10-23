@@ -16,7 +16,7 @@ public class DemoRun {
 		String useridRemote = "";
 		boolean dosend = true;
 		int port = InitParam.PORT;
-		int trialsize = 10000;
+		int trialsize = 1000000;
 		
 		
 		String trial = "sendreplylocal";
