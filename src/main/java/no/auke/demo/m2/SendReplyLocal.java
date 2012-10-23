@@ -26,7 +26,7 @@ public class SendReplyLocal {
 		
 		// wait a little while before start next
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 		}
 
