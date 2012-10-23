@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 public class MMLocalTest {
 	
-	public String boostrap="89.221.242.80:8434";
+	public String boostrap="89.221.242.80:8434,89.221.242.80:8435,89.221.242.80:8436,89.221.242.80:8437";
 	public String address="";
 	
 	Object waitfor=new Object();

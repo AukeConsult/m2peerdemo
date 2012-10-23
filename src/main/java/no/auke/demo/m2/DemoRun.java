@@ -1,5 +1,7 @@
 package no.auke.demo.m2;
 
+import no.auke.p2p.m2.InitVar;
+
 public class DemoRun {
 
 	/**
@@ -85,12 +87,16 @@ public class DemoRun {
         	
         } else if(trial.equals("mmtest"))
         {
+        	InitVar.SEND_MIDDLEMAN_REQURIED = true;
+        	
         	MMTest s = new MMTest();
         	s.address = server;
         	s.run(namespace, dir, userid, useridRemote, port, dosend);
         }
         else if(trial.equals("mmlocaltest"))
         {
+        	InitVar.SEND_MIDDLEMAN_REQURIED = true;
+        	
         	MMLocalTest s = new MMLocalTest();
         	s.address = server;
         	s.run(namespace, dir, port, userid);
