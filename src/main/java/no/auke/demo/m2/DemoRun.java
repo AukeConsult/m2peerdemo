@@ -16,6 +16,8 @@ public class DemoRun {
 		String useridRemote = "";
 		boolean dosend = true;
 		int port = InitParam.PORT;
+		int trialsize = 1000000;
+		
 		
 		String trial = "sendreplylocal";
 		String server = "";
@@ -71,17 +73,17 @@ public class DemoRun {
         } else if(trial.equals("sendreplylocal")){
         	
         	SendReplyLocal s = new SendReplyLocal();
-        	s.run(namespace, dir, port, userid);
+        	s.run(namespace, dir, port, userid,trialsize);
         	
         } else if(trial.equals("sendreply3services")){
         	
         	SendReply3Services s = new SendReply3Services();
-        	s.run(namespace, dir, userid, useridRemote, port, dosend);       	
+        	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize);       	
 
         } else if(trial.equals("sendreply")){
         	
         	SendReply s = new SendReply();
-        	s.run(namespace, dir, userid, useridRemote, port, dosend);
+        	s.run(namespace, dir, userid, useridRemote, port, dosend,trialsize);
         	
         } else if(trial.equals("mmtest"))
         {
