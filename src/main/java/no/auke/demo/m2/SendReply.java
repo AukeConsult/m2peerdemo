@@ -19,7 +19,7 @@ public class SendReply {
 		
 		logger.info("start for " + userid);
 		
-		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, "", new SimpleListener(InitParam.DEBUGLEVEL));
+		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
 	    peer.start("",port,userid);
 
 		final Socket socket = peer.open(2000, new ISocketPortListen(){

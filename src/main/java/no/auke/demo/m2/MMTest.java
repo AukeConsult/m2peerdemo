@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 public class MMTest {
 	
-	public String boostrap="89.221.242.80:8434,89.221.242.80:8435,89.221.242.80:8436,89.221.242.80:8437";
+	//public String boostrap="89.221.242.154:8434,89.221.242.154:8435,89.221.242.154:8436,89.221.242.154:8437";
 	public String address="";
 	
 	private static final Logger logger = LoggerFactory.getLogger(Socket.class);
@@ -24,7 +24,7 @@ public class MMTest {
 		
 		logger.info("start for " + userid);
 		
-		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, boostrap, new SimpleListener(InitParam.DEBUGLEVEL));
+		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
 	    peer.start(address,port,userid);
 
 		final Socket socket = peer.open(2000, new ISocketPortListen(){
