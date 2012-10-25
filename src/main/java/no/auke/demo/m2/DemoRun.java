@@ -58,6 +58,12 @@ public class DemoRun {
             	if (args[pos].equals("-nosend") && args.length > pos) {
             		dosend=false;
                 }
+            	if (args[pos].equals("-trialsize") && args.length > pos) {
+            		trialsize  = Integer.parseInt(args[pos + 1]);
+                }
+            	if (args[pos].equals("-usemm") && args.length > pos) {
+            		InitVar.SEND_MIDDLEMAN_REQURIED = true;
+                }
                 
             }
             pos++;
@@ -85,22 +91,7 @@ public class DemoRun {
         	SendReply s = new SendReply();
         	s.run(namespace, dir, userid, useridRemote, port, dosend,trialsize);
         	
-        } else if(trial.equals("mmtest"))
-        {
-        	InitVar.SEND_MIDDLEMAN_REQURIED = true;
-        	
-        	MMTest s = new MMTest();
-        	s.address = server;
-        	s.run(namespace, dir, userid, useridRemote, port, dosend);
-        }
-        else if(trial.equals("mmlocaltest"))
-        {
-        	InitVar.SEND_MIDDLEMAN_REQURIED = true;
-        	
-        	MMLocalTest s = new MMLocalTest();
-        	s.address = server;
-        	s.run(namespace, dir, port, userid);
-        }
+        } 
         else {
         	
         	System.out.println("wrong startup " + trial);
