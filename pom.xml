@@ -52,6 +52,7 @@
 	</properties>
 	
   <build>
+  		<finalName>m2peerdemo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

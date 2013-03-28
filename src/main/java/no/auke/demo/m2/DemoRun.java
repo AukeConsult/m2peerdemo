@@ -16,7 +16,7 @@ public class DemoRun {
 		String useridRemote = "";
 		boolean dosend = true;
 		int port = InitParam.PORT;
-		int trialsize = 1000000;
+		int trialsize = 100000;
 		int trialfrequency = 15;
 		
 		String trial = "sendreplylocal";
@@ -37,25 +37,25 @@ public class DemoRun {
             	} else if (args[pos].equals("-port") && args.length > pos) {
             		port = Integer.parseInt(args[pos + 1]);
                 
-                } else if (args[pos].equals("-ns") && args.length > pos) {
+                } else if ((args[pos].equals("-namesapce") || args[pos].equals("-ns")) && args.length > pos) {
             		namespace = args[pos + 1];
                 
-            	} else if (args[pos].equals("-u") && args.length > pos) {
+            	} else if ((args[pos].equals("-userid") || args[pos].equals("-u")) && args.length > pos) {
             		userid = args[pos + 1];
                 
-            	} else if (args[pos].equals("-ur") && args.length > pos) {
+            	} else if ((args[pos].equals("-useridremote") || args[pos].equals("-ur")) && args.length > pos) {
             		useridRemote = args[pos + 1];
                 
             	} else if (args[pos].equals("-dir") && args.length > pos) {
             		dir = args[pos + 1];
                 
-            	} else if (args[pos].equals("-nosend") && args.length > pos) {
+            	} else if ((args[pos].equals("-nosend") || args[pos].equals("-r")) && args.length > pos) {
             		dosend=false;
                 
             	} else if ((args[pos].equals("-trialsize") || args[pos].equals("-ts")) && args.length > pos) {
             		trialsize  = Integer.parseInt(args[pos + 1]);
 
-            	} else if ((args[pos].equals("-trialfrequece") || args[pos].equals("-tf")) && args.length > pos) {
+            	} else if ((args[pos].equals("-trialfrequecy") || args[pos].equals("-tf")) && args.length > pos) {
             		trialfrequency  = Integer.parseInt(args[pos + 1]);
                 
             	} else if (args[pos].equals("-usemm") && args.length > pos) {

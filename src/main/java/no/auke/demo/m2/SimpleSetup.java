@@ -9,7 +9,7 @@ public class SimpleSetup {
 	public void run(String namespace, String dir, String userid) {
 		
 		//initialize a peerA
-		final PeerServer peerA = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"A", dir+"/A", InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
+		final PeerServer peerA = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"A", dir+"/A", "", new SimpleListener(InitParam.DEBUGLEVEL));
 	    peerA.start(userid + "A");
 	    
 		final Socket socketA = peerA.open(2000, new SocketListener(){
@@ -24,7 +24,7 @@ public class SimpleSetup {
 		}); 
 	    
 	    //initialize a peerB
-	    final PeerServer peerB = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"B", dir+"/B", InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
+	    final PeerServer peerB = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"B", dir+"/B", "", new SimpleListener(InitParam.DEBUGLEVEL));
 		peerB.start(userid + "B");
 		
 		final Socket socketB = peerB.open(2000, new SocketListener(){
