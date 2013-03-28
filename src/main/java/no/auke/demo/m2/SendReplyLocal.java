@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 public class SendReplyLocal {
 
 	Object waitfor=new Object();
-	public void run(final String namespace, final String dir, final int port, final String userid, final int trialsize) {
+	public void run(final String namespace, final String dir, final int port, final String userid, final int trialsize, final int trialfrequency) {
 		
 		
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -17,10 +17,8 @@ public class SendReplyLocal {
 			public void run() {
 				
 				 SendReply sender = new SendReply();
-				 sender.run(namespace, dir, userid+"A", userid+"B", port, true, trialsize);
+				 sender.run(namespace, dir, userid+"A", userid+"B", port, true, trialsize, trialfrequency);
 				 
-
-				
 			}});
 		
 		
@@ -36,7 +34,7 @@ public class SendReplyLocal {
 			public void run() {
 				
 				 SendReply sender = new SendReply();
-				 sender.run(namespace, dir, userid+"B", userid+"A", (port>0?port + 1:0), false, trialsize);
+				 sender.run(namespace, dir, userid+"B", userid+"A", (port>0?port + 1:0), false, trialsize, trialfrequency);
 				
 			}});
 		

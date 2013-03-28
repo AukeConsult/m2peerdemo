@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 public class SendReply3Services {
 
 	Object waitfor=new Object();
-	public void run(final String namespace, final String dir, final String userid, final String useridRemote, int port, final boolean isreading, final int trialsize) {
+	public void run(final String namespace, final String dir, final String userid, final String useridRemote, int port, final boolean isreading, final int trialsize, final int trialfrequency) {
 		
 		
 		ExecutorService executor = Executors.newCachedThreadPool();
@@ -20,7 +20,7 @@ public class SendReply3Services {
 				public void run() {
 					
 					 SendReply sender = new SendReply();
-					 sender.run(namespace, dir, userid+String.valueOf(i), useridRemote+String.valueOf(i), port_start, isreading, trialsize);
+					 sender.run(namespace, dir, userid+String.valueOf(i), useridRemote+String.valueOf(i), port_start, isreading, trialsize, trialfrequency);
 					 
 
 					

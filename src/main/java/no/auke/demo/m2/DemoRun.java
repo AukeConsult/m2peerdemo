@@ -17,12 +17,12 @@ public class DemoRun {
 		boolean dosend = true;
 		int port = InitParam.PORT;
 		int trialsize = 1000000;
-		
+		int trialfrequency = 15;
 		
 		String trial = "sendreplylocal";
 		String server = "";
-		if(args.length >=1 && !args[0].startsWith("-"))
-		{
+		
+		if(args.length >=1 && !args[0].startsWith("-")) {
 			 server = args[0];
 		}
 		 
@@ -33,35 +33,32 @@ public class DemoRun {
             
             	if (args[pos].equals("-t") && args.length > pos) {
             		trial = args[pos + 1];
-                }
-            	
-            	if (args[pos].equals("-port") && args.length > pos) {
+                
+            	} else if (args[pos].equals("-port") && args.length > pos) {
             		port = Integer.parseInt(args[pos + 1]);
-                }            	
-        		
-            	if (args[pos].equals("-ns") && args.length > pos) {
+                
+                } else if (args[pos].equals("-ns") && args.length > pos) {
             		namespace = args[pos + 1];
-                }
                 
-            	if (args[pos].equals("-u") && args.length > pos) {
+            	} else if (args[pos].equals("-u") && args.length > pos) {
             		userid = args[pos + 1];
-                }
-            	
-            	if (args[pos].equals("-ur") && args.length > pos) {
-            		useridRemote = args[pos + 1];
-                }            	
                 
-            	if (args[pos].equals("-dir") && args.length > pos) {
+            	} else if (args[pos].equals("-ur") && args.length > pos) {
+            		useridRemote = args[pos + 1];
+                
+            	} else if (args[pos].equals("-dir") && args.length > pos) {
             		dir = args[pos + 1];
-                }
-            	
-            	if (args[pos].equals("-nosend") && args.length > pos) {
+                
+            	} else if (args[pos].equals("-nosend") && args.length > pos) {
             		dosend=false;
-                }
-            	if (args[pos].equals("-trialsize") && args.length > pos) {
+                
+            	} else if ((args[pos].equals("-trialsize") || args[pos].equals("-ts")) && args.length > pos) {
             		trialsize  = Integer.parseInt(args[pos + 1]);
-                }
-            	if (args[pos].equals("-usemm") && args.length > pos) {
+
+            	} else if ((args[pos].equals("-trialfrequece") || args[pos].equals("-tf")) && args.length > pos) {
+            		trialfrequency  = Integer.parseInt(args[pos + 1]);
+                
+            	} else if (args[pos].equals("-usemm") && args.length > pos) {
             		InitVar.SEND_MIDDLEMAN_REQURIED = true;
                 }
                 
@@ -79,20 +76,19 @@ public class DemoRun {
         } else if(trial.equals("sendreplylocal")){
         	
         	SendReplyLocal s = new SendReplyLocal();
-        	s.run(namespace, dir, port, userid,trialsize);
+        	s.run(namespace, dir, port, userid,trialsize,trialfrequency);
         	
         } else if(trial.equals("sendreply3services")){
         	
         	SendReply3Services s = new SendReply3Services();
-        	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize);       	
+        	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize, trialfrequency);       	
 
         } else if(trial.equals("sendreply")){
         	
         	SendReply s = new SendReply();
-        	s.run(namespace, dir, userid, useridRemote, port, dosend,trialsize);
+        	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize, trialfrequency);
         	
-        } 
-        else {
+        } else {
         	
         	System.out.println("wrong startup " + trial);
         	

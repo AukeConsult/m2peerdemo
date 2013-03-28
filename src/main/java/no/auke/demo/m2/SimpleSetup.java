@@ -2,7 +2,7 @@ package no.auke.demo.m2;
 
 import no.auke.p2p.m2.PeerServer;
 import no.auke.p2p.m2.Socket;
-import no.auke.p2p.m2.sockets.ISocketPortListen;
+import no.auke.p2p.m2.SocketListener;
 
 public class SimpleSetup {
 	
@@ -12,7 +12,7 @@ public class SimpleSetup {
 		final PeerServer peerA = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"A", dir+"/A", InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
 	    peerA.start(userid + "A");
 	    
-		final Socket socketA = peerA.open(2000, new ISocketPortListen(){
+		final Socket socketA = peerA.open(2000, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {
@@ -27,7 +27,7 @@ public class SimpleSetup {
 	    final PeerServer peerB = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"B", dir+"/B", InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
 		peerB.start(userid + "B");
 		
-		final Socket socketB = peerB.open(2000, new ISocketPortListen(){
+		final Socket socketB = peerB.open(2000, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {

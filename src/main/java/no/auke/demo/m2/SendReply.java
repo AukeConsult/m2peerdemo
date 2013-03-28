@@ -7,13 +7,14 @@ import org.slf4j.LoggerFactory;
 
 import no.auke.p2p.m2.PeerServer;
 import no.auke.p2p.m2.Socket;
-import no.auke.p2p.m2.sockets.ISocketPortListen;
+import no.auke.p2p.m2.SocketListener;
+import no.auke.p2p.m2.sockets.messages.MsgSimple;
 
 public class SendReply {
 	
     private static final Logger logger = LoggerFactory.getLogger(Socket.class);
 	
-	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send, int trialsize) {
+	public void run(String namespace, String dir, String userid, String useridRemote, int port, boolean send, int trialsize, int trialFrequence) {
 		
 		//initialize a peerA
 		
@@ -22,16 +23,16 @@ public class SendReply {
 		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, InitParam.BOOSTRAP, new SimpleListener(InitParam.DEBUGLEVEL));
 	    peer.start("",port,userid);
 
-		final Socket socket = peer.open(2000, new ISocketPortListen(){
+		final Socket socket = peer.open(2000, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {
 				
-				SimpleMessage message = new SimpleMessage(buffer);
+				MsgSimple message = new MsgSimple(buffer);
 				
 				System.out.println("message from " + 
 									message.getUserid() + 
-									" num " + String.valueOf(message.getNum()) + 
+									" num " + String.valueOf(message.getId()) + 
 									" size : " + String.valueOf(message.getMessage().length));
 				
 			}			
@@ -51,7 +52,7 @@ public class SendReply {
 				rnd.nextBytes(message);
 				
 				
-				if(socket.send(useridRemote, 2000, new SimpleMessage(userid,cnt,message).getBytes())){
+				if(socket.send(useridRemote, 2000, new MsgSimple(userid,cnt,false,message).getBytes())){
 
 					cnt++;
 					System.out.println("SUCCESS: sent to " + useridRemote + " size : " + String.valueOf(message.length));
@@ -64,7 +65,7 @@ public class SendReply {
 				}
 				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(trialFrequence*1000);
 				} catch (InterruptedException e) {
 				}
 				
