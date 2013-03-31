@@ -1,5 +1,7 @@
 package no.auke.demo.m2;
 
+import java.util.UUID;
+
 import no.auke.p2p.m2.InitVar;
 
 public class DemoRun {
@@ -7,14 +9,17 @@ public class DemoRun {
 	/**
 	 * @param args
 	 */
+	
 	public static void main(String[] args) {
 		
 		String namespace = InitParam.NAMESPACE;
 		String dir = InitParam.USERDIR;
 		
-		String userid = "TestUser";
+		String userid = UUID.randomUUID().toString().substring(1,6);
 		String useridRemote = "";
+		
 		boolean dosend = true;
+		
 		int port = InitParam.PORT;
 		int trialsize = 100000;
 		int trialfrequency = 15;
@@ -31,13 +36,13 @@ public class DemoRun {
             
         	if (args[pos].startsWith("-")) {
             
-            	if (args[pos].equals("-t") && args.length > pos) {
+            	if ((args[pos].equals("-t") || args[pos].equals("-run")) && args.length > pos) {
             		trial = args[pos + 1];
                 
             	} else if (args[pos].equals("-port") && args.length > pos) {
             		port = Integer.parseInt(args[pos + 1]);
                 
-                } else if ((args[pos].equals("-namesapce") || args[pos].equals("-ns")) && args.length > pos) {
+                } else if ((args[pos].equals("-namespace") || args[pos].equals("-ns")) && args.length > pos) {
             		namespace = args[pos + 1];
                 
             	} else if ((args[pos].equals("-userid") || args[pos].equals("-u")) && args.length > pos) {
@@ -87,6 +92,11 @@ public class DemoRun {
         	
         	SendReply s = new SendReply();
         	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize, trialfrequency);
+
+        } else if(trial.equals("echo")){
+        	
+        	EchoService s = new EchoService();
+        	s.run(userid);
         	
         } else {
         	

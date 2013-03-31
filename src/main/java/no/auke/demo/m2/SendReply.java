@@ -98,10 +98,7 @@ public class SendReply {
 				
 			}
 			
-			
 		}
-	    
 	}
-
 
 }
