@@ -21,7 +21,7 @@ public class DemoRun {
 		boolean dosend = true;
 		
 		int port = InitParam.PORT;
-		int trialsize = 100000;
+		int trialsize = 10000;
 		int trialfrequency = 15;
 		
 		String trial = "";
@@ -73,10 +73,20 @@ public class DemoRun {
         
     	System.out.println("starting " + trial);
         
-        if(trial.isEmpty()){
+        if(trial.isEmpty() || trial.equals("echoservice")){
         	
         	EchoService s = new EchoService();
         	s.run(userid);
+
+        } else if(trial.equals("echomessage")){
+        	
+        	EchoMessage s = new EchoMessage();
+        	s.run(userid, useridRemote, trialsize, trialfrequency);
+
+        } else if(trial.equals("echostream")){
+        	
+        	EchoStream s = new EchoStream();
+        	s.run(userid, useridRemote, trialsize, trialfrequency);
         	
         } else if(trial.equals("sendreplylocal")){
         	
@@ -93,11 +103,11 @@ public class DemoRun {
         	SendReply s = new SendReply();
         	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize, trialfrequency);
 
+        	
         } else if(trial.equals("simple")){
         	
         	SimpleSetup s = new SimpleSetup();
         	s.run(namespace, dir, userid);
-
         	
         } else {
         	

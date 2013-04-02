@@ -53,11 +53,11 @@ public class SendReply {
 
 				if(socket_reply.send(message.getUserid(), 2001, new MsgSimple(userid,message.getId(),message.getMessage()).getBytes())){
 
-					System.out.println("SUCCESS: sent reply to " + message.getUserid() + " size : " + String.valueOf(message.getMessage().length));
+					System.out.println("sent reply to " + message.getUserid() + " size : " + String.valueOf(message.getMessage().length));
 					
 				} else {
 					
-					System.out.println("ERROR: can not send reply to " + message.getUserid() + " error " + socket_reply.getLastMessage());
+					System.out.println("can not send reply to " + message.getUserid() + " error " + socket_reply.getLastMessage());
 					
 				}
 				
@@ -80,11 +80,11 @@ public class SendReply {
 				if(socket.send(useridRemote, 2000, new MsgSimple(userid,cnt,message).getBytes())){
 
 					cnt++;
-					System.out.println("SUCCESS: sent to " + useridRemote + " size : " + String.valueOf(message.length));
+					System.out.println("sent to " + useridRemote + " size : " + String.valueOf(message.length));
 					
 				} else {
 					
-					System.out.println("ERROR: can not send to " + useridRemote + " error " + socket.getLastMessage());
+					System.out.println("can not send to " + useridRemote + " error " + socket.getLastMessage());
 					socket.close(useridRemote);
 					
 				}
