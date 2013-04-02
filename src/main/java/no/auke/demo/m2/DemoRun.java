@@ -15,7 +15,7 @@ public class DemoRun {
 		String namespace = InitParam.NAMESPACE;
 		String dir = InitParam.USERDIR;
 		
-		String userid = UUID.randomUUID().toString().substring(1,6);
+		String userid = "";
 		String useridRemote = "";
 		
 		boolean dosend = true;
@@ -24,7 +24,7 @@ public class DemoRun {
 		int trialsize = 100000;
 		int trialfrequency = 15;
 		
-		String trial = "sendreplylocal";
+		String trial = "";
 		String server = "";
 		
 		if(args.length >=1 && !args[0].startsWith("-")) {
@@ -75,8 +75,8 @@ public class DemoRun {
         
         if(trial.isEmpty()){
         	
-        	SimpleSetup s = new SimpleSetup();
-        	s.run(namespace, dir, userid);
+        	EchoService s = new EchoService();
+        	s.run(userid);
         	
         } else if(trial.equals("sendreplylocal")){
         	
@@ -93,10 +93,11 @@ public class DemoRun {
         	SendReply s = new SendReply();
         	s.run(namespace, dir, userid, useridRemote, port, dosend, trialsize, trialfrequency);
 
-        } else if(trial.equals("echo")){
+        } else if(trial.equals("simple")){
         	
-        	EchoService s = new EchoService();
-        	s.run(userid);
+        	SimpleSetup s = new SimpleSetup();
+        	s.run(namespace, dir, userid);
+
         	
         } else {
         	

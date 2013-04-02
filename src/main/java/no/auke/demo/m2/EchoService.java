@@ -24,8 +24,8 @@ public class EchoService {
 		
 		logger.info("start echo for " + userid);
 		
-		final PeerServer peer = new PeerServer("m2echo", "echoapp", InitParam.DEVICEID, ".", "", new SimpleListener(InitParam.DEBUGLEVEL));
-	    peer.start(userid);
+		final PeerServer peer = new PeerServer("echoservice", "echoapp", InitParam.DEVICEID, ".", "", new SimpleListener(InitParam.DEBUGLEVEL));
+	    peer.start(userid.isEmpty()?"echo1":userid);
 		
 		socket = peer.open(1, new SocketListener(){
 
@@ -39,7 +39,7 @@ public class EchoService {
 						" id " + String.valueOf(message.getId()) + 
 						" size : " + String.valueOf(message.getMessage().length));
 
-				if(getSocket().send(message.getUserid(), 1, new MsgSimple(userid,message.getId(),message.getMessage()).getBytes())){
+				if(getSocket().send(message.getUserid(), 1, new MsgSimple(peer.getClientid(),message.getId(),message.getMessage()).getBytes())){
 
 					System.out.println("SUCCESS: sent reply to " + message.getUserid() + " size : " + String.valueOf(message.getMessage().length));
 					
