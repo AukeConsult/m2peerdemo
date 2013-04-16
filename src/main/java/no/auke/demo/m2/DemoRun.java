@@ -1,7 +1,5 @@
 package no.auke.demo.m2;
 
-import java.util.UUID;
-
 import no.auke.p2p.m2.InitVar;
 
 public class DemoRun {
@@ -25,12 +23,7 @@ public class DemoRun {
 		int trialfrequency = 15;
 		
 		String trial = "";
-		String server = "";
 		
-		if(args.length >=1 && !args[0].startsWith("-")) {
-			 server = args[0];
-		}
-		 
         int pos = 0;
         while (pos < args.length) {
             

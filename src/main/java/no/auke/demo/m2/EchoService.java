@@ -1,7 +1,5 @@
 package no.auke.demo.m2;
 
-import java.util.UUID;
-
 import no.auke.p2p.m2.PeerServer;
 import no.auke.p2p.m2.Socket;
 import no.auke.p2p.m2.SocketListener;
@@ -75,7 +73,7 @@ public class EchoService {
 
 				if(!getStreamSocket().send(message.getUserid(), STREAM_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes())){
 
-					System.out.println("can not send stream reply to " + message.getUserid() + " error " + getSocket().getLastMessage());
+					System.out.println("can not send stream reply to " + message.getUserid() + " error " + getStreamSocket().getLastMessage());
 					
 				}
 				
