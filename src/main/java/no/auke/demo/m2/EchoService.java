@@ -51,7 +51,11 @@ public class EchoService {
 
 				if(!getSocket().send(message.getUserid(), MESSAGE_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes())){
 
-					System.out.println("can not send message reply to " + message.getUserid() + " error " + getSocket().getLastMessage());
+					System.out.println("ERROR: can not send message reply to " + message.getUserid() + " error " + getSocket().getLastMessage());
+					
+				} else {
+					
+					System.out.println("Reply message to " + message.getUserid() + " id " + String.valueOf(message.getId() + " size " + String.valueOf(buffer.length)));
 					
 				}
 				
@@ -73,7 +77,11 @@ public class EchoService {
 
 				if(!getStreamSocket().send(message.getUserid(), STREAM_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes())){
 
-					System.out.println("can not send stream reply to " + message.getUserid() + " error " + getStreamSocket().getLastMessage());
+					System.out.println("ERROR: can not send stream reply to " + message.getUserid() + " error " + getStreamSocket().getLastMessage());
+					
+				} else { 
+					
+					System.out.println("Reply stream to " + message.getUserid() + " id " + String.valueOf(message.getId() + " size " + String.valueOf(buffer.getData().length)));
 					
 				}
 				
