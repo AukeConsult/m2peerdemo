@@ -28,7 +28,7 @@ public class EchoMessage {
 		final PeerServer peer = new PeerServer(EchoService.DEFAULT_NAMESPACE, "echoapp", InitParam.DEVICEID, ".", "", new SimpleListener(InitParam.DEBUGLEVEL));
 	    peer.start(userid);
 	    
-		socket = peer.open(EchoService.MESSAGE_PORT, new SocketListener(){
+		socket = peer.openSocket(EchoService.MESSAGE_PORT, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {

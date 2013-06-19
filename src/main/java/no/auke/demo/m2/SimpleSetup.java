@@ -12,7 +12,7 @@ public class SimpleSetup {
 		final PeerServer peerA = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"A", dir+"/A", "", new SimpleListener(InitParam.DEBUGLEVEL));
 	    peerA.start(userid + "A");
 	    
-		final Socket socketA = peerA.open(2000, new SocketListener(){
+		final Socket socketA = peerA.openSocket(2000, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {
@@ -27,7 +27,7 @@ public class SimpleSetup {
 	    final PeerServer peerB = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID+"B", dir+"/B", "", new SimpleListener(InitParam.DEBUGLEVEL));
 		peerB.start(userid + "B");
 		
-		final Socket socketB = peerB.open(2000, new SocketListener(){
+		final Socket socketB = peerB.openSocket(2000, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {

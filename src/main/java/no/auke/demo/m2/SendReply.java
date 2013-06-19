@@ -23,7 +23,7 @@ public class SendReply {
 		final PeerServer peer = new PeerServer(namespace, InitParam.APPID, InitParam.DEVICEID, dir, "", new SimpleListener(InitParam.DEBUGLEVEL));
 	    peer.start("",port,userid);
 
-		final Socket socket_reply = peer.open(2001, new SocketListener(){
+		final Socket socket_reply = peer.openSocket(2001, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {
@@ -39,7 +39,7 @@ public class SendReply {
 
 		});
 		
-		final Socket socket = peer.open(2000, new SocketListener(){
+		final Socket socket = peer.openSocket(2000, new SocketListener(){
 
 			@Override
 			public void onIncomming(byte[] buffer) {
