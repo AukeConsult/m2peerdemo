@@ -3,6 +3,7 @@ package no.auke.demo.m2;
 import no.auke.p2p.m2.PeerServer;
 import no.auke.p2p.m2.Socket;
 import no.auke.p2p.m2.SocketListener;
+import no.auke.p2p.m2.SocketRetStatus;
 import no.auke.p2p.m2.StreamSocket;
 import no.auke.p2p.m2.StreamSocket.StreamPacket;
 import no.auke.p2p.m2.StreamSocketListener;
@@ -49,9 +50,11 @@ public class EchoService {
 //						" id " + String.valueOf(message.getId()) + 
 //						" size : " + String.valueOf(message.getMessage().length));
 
-				if(!getSocket().send(message.getUserid(), MESSAGE_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes())){
+				SocketRetStatus ret = getSocket().send(message.getUserid(), MESSAGE_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes());
+				
+				if(!ret.isOk()){
 
-					System.out.println("ERROR: can not send message reply to " + message.getUserid() + " error " + getSocket().getLastMessage());
+					System.out.println("ERROR: can not send message reply to " + message.getUserid() + " error " + ret.getLastMessage());
 					
 				} else {
 					
@@ -75,9 +78,10 @@ public class EchoService {
 //						" id " + String.valueOf(message.getId()) + 
 //						" size : " + String.valueOf(message.getMessage().length));
 
-				if(!getStreamSocket().send(message.getUserid(), STREAM_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes())){
+				SocketRetStatus ret = getStreamSocket().send(new SocketRetStatus(),message.getUserid(), STREAM_PORT, new MsgSimple(peerserver.getClientid(),message.getId(),message.getTimesent(),message.getMessage()).getBytes());
+				if(!ret.isOk()){
 
-					System.out.println("ERROR: can not send stream reply to " + message.getUserid() + " error " + getStreamSocket().getLastMessage());
+					System.out.println("ERROR: can not send stream reply to " + message.getUserid() + " error " + ret.getLastMessage());
 					
 				} else { 
 					

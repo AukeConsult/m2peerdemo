@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import no.auke.p2p.m2.PeerServer;
+import no.auke.p2p.m2.SocketRetStatus;
 import no.auke.p2p.m2.StreamSocket;
 import no.auke.p2p.m2.StreamSocket.StreamPacket;
 import no.auke.p2p.m2.StreamSocketListener;
@@ -72,7 +73,9 @@ public class EchoStream {
 				
 				byte[] msgbytes = msg.getBytes();
 				
-				if(getSocket().send(useridRemote, EchoService.STREAM_PORT, msgbytes)){
+				SocketRetStatus ret = getSocket().send(new SocketRetStatus(), useridRemote, EchoService.STREAM_PORT, msgbytes); 
+				
+				if(ret.isOk()){
 
 					cnt++;
 					System.out.println("sent stream to " + useridRemote + " size : " + String.valueOf(msgbytes.length));
@@ -80,7 +83,7 @@ public class EchoStream {
 				} else {
 
 					sendmessages.remove(cnt);
-					System.out.println("can not send stream to " + useridRemote + " size : " + String.valueOf(msgbytes.length) + " error " + getSocket().getLastMessage());
+					System.out.println("can not send stream to " + useridRemote + " size : " + String.valueOf(msgbytes.length) + " error " + ret.getLastMessage());
 					
 				}
 				

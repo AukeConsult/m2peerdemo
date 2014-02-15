@@ -14,7 +14,7 @@
          <dependency>
             <groupId>auke.consult</groupId>
             <artifactId>m2peerservice</artifactId>
-            <version>2.2-SNAPSHOT</version>
+            <version>2.3-SNAPSHOT</version>
         </dependency>        
         
 	</dependencies>

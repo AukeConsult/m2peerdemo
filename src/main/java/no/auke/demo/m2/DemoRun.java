@@ -56,8 +56,8 @@ public class DemoRun {
             	} else if ((args[pos].equals("-trialfrequecy") || args[pos].equals("-tf")) && args.length > pos) {
             		trialfrequency  = Integer.parseInt(args[pos + 1]);
                 
-            	} else if (args[pos].equals("-usemm") && args.length > pos) {
-            		InitVar.SEND_MIDDLEMAN_REQURIED = true;
+//            	} else if (args[pos].equals("-usemm") && args.length > pos) {
+//            		InitVar.SEND_MIDDLEMAN_REQURIED = true;
                 }
                 
             }

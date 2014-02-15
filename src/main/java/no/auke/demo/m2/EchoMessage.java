@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import no.auke.p2p.m2.PeerServer;
 import no.auke.p2p.m2.Socket;
 import no.auke.p2p.m2.SocketListener;
+import no.auke.p2p.m2.SocketRetStatus;
 import no.auke.p2p.m2.sockets.messages.MsgSimple;
 
 public class EchoMessage {
@@ -63,7 +64,8 @@ public class EchoMessage {
 			
 			sendmessages.put(msg.getId(), msg);
 			
-			if(getSocket().send(useridRemote, EchoService.MESSAGE_PORT, msg.getBytes())){
+			SocketRetStatus ret = getSocket().send(useridRemote, EchoService.MESSAGE_PORT, msg.getBytes());
+			if(ret.isOk()){
 
 				cnt++;
 				System.out.println("sent to " + useridRemote + " size : " + String.valueOf(message.length));
@@ -72,7 +74,7 @@ public class EchoMessage {
 
 				sendmessages.remove(cnt);
 
-				System.out.println("can not send to " + useridRemote + " error " + getSocket().getLastMessage());
+				System.out.println("can not send to " + useridRemote + " error " + ret.getLastMessage());
 				socket.close(useridRemote);
 				
 			}

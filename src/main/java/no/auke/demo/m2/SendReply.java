@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import no.auke.p2p.m2.PeerServer;
 import no.auke.p2p.m2.Socket;
 import no.auke.p2p.m2.SocketListener;
+import no.auke.p2p.m2.SocketRetStatus;
 import no.auke.p2p.m2.sockets.messages.MsgSimple;
 
 public class SendReply {
@@ -51,13 +52,14 @@ public class SendReply {
 						" id " + String.valueOf(message.getId()) + 
 						" size : " + String.valueOf(message.getMessage().length));
 
-				if(socket_reply.send(message.getUserid(), 2001, new MsgSimple(userid,message.getId(),message.getMessage()).getBytes())){
+				SocketRetStatus ret = socket_reply.send(message.getUserid(), 2001, new MsgSimple(userid,message.getId(),message.getMessage()).getBytes());
+				if(ret.isOk()){
 
 					System.out.println("sent reply to " + message.getUserid() + " size : " + String.valueOf(message.getMessage().length));
 					
 				} else {
 					
-					System.out.println("can not send reply to " + message.getUserid() + " error " + socket_reply.getLastMessage());
+					System.out.println("can not send reply to " + message.getUserid() + " error " + ret.getLastMessage());
 					
 				}
 				
@@ -76,15 +78,16 @@ public class SendReply {
 				// fill som random data
 				byte[] message = new byte[trialsize + rnd.nextInt(trialsize)];
 				rnd.nextBytes(message);
-								
-				if(socket.send(useridRemote, 2000, new MsgSimple(userid,cnt,message).getBytes())){
+						
+				SocketRetStatus ret = socket.send(useridRemote, 2000, new MsgSimple(userid,cnt,message).getBytes());
+				if(ret.isOk()){
 
 					cnt++;
 					System.out.println("sent to " + useridRemote + " size : " + String.valueOf(message.length));
 					
 				} else {
 					
-					System.out.println("can not send to " + useridRemote + " error " + socket.getLastMessage());
+					System.out.println("can not send to " + useridRemote + " error " + ret.getLastMessage());
 					socket.close(useridRemote);
 					
 				}
