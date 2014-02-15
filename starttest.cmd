@@ -1,5 +1,5 @@
-
-start java -jar target\m2peerdemo.jar -t sendreply -ns test_local -u local -nosend
+start java -jar target\m2peerdemo.jar -t sendreply -ns test -u test -nosend
+pause 10
 
 start java -jar target\m2peerdemo.jar -t sendreply -ns test -u leif_test1 -ur test -trialsize 100000
 start java -jar target\m2peerdemo.jar -t sendreply -ns test -u leif_test2 -ur test -trialsize 100000
